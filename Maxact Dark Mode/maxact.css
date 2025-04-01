@@ -1,0 +1,782 @@
+html, body {
+  height: 500;
+  margin: 25px; /* Ta bort standardmarginaler */
+  padding: 25px; /* Ta bort standardpadding */
+}
+
+/* Grundläggande stil för body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #171946;
+  margin: 0;
+  display: flex;
+  height: auto;
+  align-items: center; /* Centrera innehållet */
+  justify-content: center; /* Ytterligare centrering */
+  overflow-x: hidden; /* Förhindra horisontell scrollning */
+}
+  
+/* Repost container stilar */
+.repost-container {
+    background-color: #5b6691;
+    display: none; /* Initialt doldt */
+    max-height: 450px; /* Maxhöjd för scrollning */
+    width: 350px; /* Sätt en fast bredd */
+    overflow-y: auto; /* Aktivera vertikal scrollning */
+    overflow-x: hidden; /* Dölja horisontell scrollning */
+    margin-bottom: 0px; /* Ger utrymme mellan repost-container och formuläret */
+    margin-left: 10px;
+    border-radius: 5px; /* Rundade hörn */
+    padding: 10px;
+
+}
+
+.repost {
+  background-color: #1a1b5091;
+  border: 1px solid #cccccc70;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  padding-right: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 14px 10px rgba(0, 0, 0, 0.1); /* Added drop shadow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 310px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 2px;
+}
+
+
+.repost-content {
+  flex-grow: 1;
+  color: #ffffff;
+}
+
+.repost-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.repost-details {
+  font-size: 10px;
+  max-width: 250px;
+  width: 240px;
+  opacity: 0.9;
+}
+
+.repost-buttons {
+  display: auto;
+  gap: 5px;
+  height: 22px;
+  width: 20px;
+}
+
+.repost-button {
+    position: auto;
+    margin-top: -107px;
+    margin-left: 255px;
+    margin-right: 7px;
+    display: flex;
+    gap: 8px;
+}
+    /* Knappar i repost-rutan */
+.repost-buttons {
+  position: auto; /* Ändra till absolute positioning */
+  margin-top: 25px;
+  margin-right: 30px;
+  right: 10px;      /* Placera på höger sida */
+  top: 50%;         /* Centrera vertikalt */
+  transform: translateY(-50%); /* Perfekt vertikal centrering */
+  display: flex;
+  flex-direction: ro; /* Stapla knapparna vertikalt */
+  gap: 8px;
+  height: 22px;
+  width: 20px;
+}
+
+.repost button {
+  background-color: #b7e659;
+  border: none;
+  color: #161743;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 4px 10px;
+}
+
+/* Wrapper för att centrera innehåll */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  width: 350px;
+}
+
+/* Titelstil */
+h2, p {
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Korrelationsruta */
+.square {
+  width: 340px;
+  height: 55px;
+  background-color: #171946;
+  border: 1px solid #b7e659;
+  border-radius: 7px;
+  position: relative;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: 10px;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+  margin-top:-25px;
+}
+
+.PresGraf{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  margin-right: 220px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  color: #ffffff;
+  font-weight: medium;
+}
+
+.sprint {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 15px;
+  padding-bottom: 10px;
+  color: rgb(255, 255, 255);
+}
+
+/* Grafstilar */
+#graphCanvas{
+  width: 355px;
+  height: 190px;
+  margin-bottom: 40px;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+/* Formulär */
+form {
+  width: 310px;
+  background-color: #232450;
+  padding: 20px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  border:#cccccc5d 1px solid;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: -10px;
+  margin-bottom: 25px;
+  font-family: Arial, Helvetica, sans-serif;;
+}
+
+
+/* Stil för formulär etiketter och input */
+label, p {
+  color: #ffffff;
+  font-weight:regular;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  padding: 5px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+textarea {
+  width: 100%;
+  height:40px;
+  padding: 10px;
+  margin-top: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000000;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  border: 1px solid #cccccc7b;
+  border-radius: 7px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #5b6691;
+  width: 100%;
+  height:40px;
+  padding: 10px;
+  margin-top: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000000;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  border: 1px solid #cccccc7b;
+  border-radius: 7px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+select {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #cccccc7b;
+  border-radius: 7px;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+  font-size: 13px;
+  padding: 8px;
+  margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 40px; /* Fix height to 40px */
+}
+
+textarea {
+  width: 100%;
+  height:80px;
+  padding: 8px;
+  margin-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000000;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  border: 1px solid #cccccc7b;
+  border-radius: 7px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+
+/* Skicka-knapp */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #b7e659;
+  color: #161743;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* Effekt på knappen vid hover */
+input[type="submit"]:hover {
+  background-color: #a0c94d;
+}
+
+/* Dynamiska fält */
+#dynamic-fields{
+  margin-top: 10px;
+}
+
+#dynamic-fields label {
+  margin-top: 10px;
+}
+
+.Kategori{
+  margin-top: 10px;
+  height: 40px;
+}
+
+
+
+#dynamic-fields input, #dynamic-fields select{
+  width: 100%;
+  height:35px;
+  padding: 8pxs;
+  margin-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000000;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  border: 1px solid #cccccc7b;
+  border-radius: 7px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+#toggleStatsButton {
+  width: 355px;
+  display: block;
+  margin: 20px center; /* Mellanrum och centrerat */
+  margin-bottom: 20px;
+  background-color: #b7e659;
+  color: #161743;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#toggleStatsButton:hover {
+  background-color: #a4d244;
+  transform: scale(1.05);
+}
+
+
+#toggleRepostButton {
+  width: 355px;
+  display: block;
+  margin: 10px center; /* Mellanrum och centrerat */
+  margin-bottom: 20px;
+  background-color: #161743;
+  color: #b7e659;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  padding: 10px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#toggleRepostButton:hover {
+  background-color: #a4d244;
+  color:#171946;
+  transform: scale(1.05);
+}
+
+/* För att hålla repost-container i layouten även när den är dold */
+#repostContainer {
+  margin: 0px center; /* Mellanrum och centrerat */
+  width: 350px;
+  height: 850px;
+  padding: 0px 10px;
+  margin-top: 0px;
+  border-radius: 0px;
+  margin-left: 0px;
+  margin-top: 12px;
+  padding-bottom: 20px;
+}
+
+.habit-stat {
+background-color: #161743;
+display: none;
+color: #161743;
+width: 0px;
+height: 0px;
+padding: 10px;
+padding-right: -10000000;
+margin: 0px 0px;
+border-radius: 5px;
+text-align: center;
+}
+
+/* Ny stil för de mest frekventa vanorna */
+#frequentHabitsContainer {
+  display: block; /* Visa initialt */
+  margin-top: -40px;
+  margin-left: 0px;
+  margin-bottom: -50px;
+  padding-bottom: 10px;
+  width: 100%;
+  height: 460px; /* Fast höjd för containern */
+  overflow-y: block; /* Aktivera vertikal scrollning */
+  background-color: #232450;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.no-habits-message {
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+}
+
+ h3 {
+  width: 345px;
+  height: 20px;
+  border-radius: 7px;
+  padding: 0px;
+  align-items: center;
+  justify-content: 10px;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 15px;
+}
+
+hr{
+  margin-top:30px;
+  color:#ffffff;
+}
+
+img {
+  margin-top:-35px;
+}
+
+.Default{
+  margin-top:0px;
+  padding-left: 0px;
+  padding-right: 200px;
+  padding-bottom: 40px;
+  padding-top:20px;
+  color: #ffffff;
+  font-weight: bolder;
+}
+
+
+#myMenu {
+    list-style: none;
+    padding: 40px;
+    max-width: 305px;
+    margin-right: -30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    margin-top: -15px;
+
+
+}
+
+#myMenu li {
+    margin: 0;
+    flex: 0 1 auto;
+}
+
+#myMenu li a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #000000;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 11px;
+    border: 2px solid transparent;
+    white-space: nowrap;
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2);
+}
+
+#myMenu li a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#myMenu li a.active {
+    background-color: white;
+    color: #8897D2;
+    border: 2px solid #8897D2;
+}
+
+/* Lägg till dessa regler för att hantera visibilitet */
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
+const style = document.createElement("style");
+style.innerHTML += `
+    /* Styling för submit-knappen */
+    #Enkät input[type="submit"] {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    /* Inaktiverad knapp styling */
+    #Enkät input[type="submit"]:disabled {
+        background-color: #cccccc;
+        cursor: wait;
+        opacity: 0.7;
+    }
+
+    /* Laddningsanimation */
+    .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    @keyframes spin {
+        to { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    /* Container för knapptext och spinner */
+    .submit-button-container {
+        position: relative;
+        display: inline-block;
+    }
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+#HideShow{
+  background-color: #8897D2; /* Ljusblå bakgrund */
+  padding: 20px; /* Lägg till lite utrymme runt innehållet */
+  border-radius: 0px; /* Rundade hörn för en mjukare look */
+  margin-top: -10px; /* Lite marginal överst */
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+#myMenu, .repost-container {
+  background-color: #232450;
+  position: none;
+  padding-left: 30px;
+  padding-right: 35px;
+  padding-bottom: 20px;
+  margin-left: -30px;
+
+}
+
+#myFunction{
+  background-color: #000000;
+  padding: 20px; /* Lägg till lite utrymme runt innehållet */
+  border-radius: 0px;
+  margin-top: 10px; /* Lite marginal överst */
+  margin-bottom: 10px;
+  height: 800px;
+  position: fixed; /* Placera formuläret absolut */
+  top: 0; /* Justera efter behov */
+  left: 50%; /* Centrera horisontellt */
+  transform: translateX(-50%); /* Justera för att centrera */
+  z-index: 1000; /* Se till att formuläret ligger ovanpå andra element */
+}
+
+button[onclick="myFunction()"] {
+  background-color: #232450; /* Ljusblå bakgrund */
+  color: white; /* Vit text */
+  border: none; /* Ta bort kantlinjen */
+  transition: all 0.3s ease;
+  padding: 10px 20px; /* Utrymme runt texten */
+  border-radius: 10px 10px 0px 0px; /* Rundade hörn */
+  width: 370px; 
+  height: 55px;
+}
+
+button[onclick="Form()"] {
+  background-color: #030310; 
+  box-shadow: 0 2px 4px rgba(0,0,0,1);
+  opacity: 0.7;
+  color: rgb(255, 255, 255); /* Vit text */
+  border: none; /* Ta bort kantlinjen */
+  padding: 10px 10px; /* Utrymme runt texten */
+  border-radius: 10px 10px 10px 10px; /* Rundade hörn */
+  width: 345px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  display: flex; /* Använd flexbox för att centrera innehållet */
+  justify-content: center; /* Centrera horisontellt */
+  align-items: center; /* Centrera vertikalt */
+  text-align: center; /* Centrera texten inom flexboxen */
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+}
+
+button[onclick="Form()"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button[onclick="Form()"].active {
+  background-color: white;
+  color: #8897D2;
+  border: 2px solid #8897D2;
+}
+
+.fa-angle-up {
+  font-size: 24px; /* Justera storleken på ikonen */
+  font-weight: bold; /* Gör ikonen fetare */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Lägg till en textskugga för att ge ett fetare utseende */
+  transform: scaleX(1.2); /* Gör ikonen bredare */
+  width: 100px;
+  transition: transform 0.3s ease; /* Lägg till övergång för rotation */
+}
+
+#ShowForm{
+  background-color: #232450; /* Ljusblå bakgrund */
+  padding: 20px; /* Lägg till lite utrymme runt innehållet */
+  border-radius: 0px; /* Rundade hörn för en mjukare look */
+  margin-top: -130px; /* Lite marginal överst */
+  padding-top: 140px;
+  margin-bottom: -10px;
+  width: 330px;
+  height: auto;
+  display: block;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.div.repost{
+  background-color: #000000;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  padding-right: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  width: 340px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+
+#searchInput {
+  width: 350px;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  font-size: 12px;
+  background-color: #000000; /* Mörk bakgrundsfärg för sökrutan */
+}
+
+/* Stil för sökrutan container */
+.search-container {
+  background-color: #232450; /* Ljusblå bakgrundsfärg */
+  padding: 10px;
+  border-radius: 0px;
+  margin-bottom: -12px;
+  margin-top: -16px;
+}
+
+/* Popup styles */
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #030310;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  border-radius: 5px;
+}
+#popupCloseButton {
+  margin-top: 10px;
+  background-color: #b7e659;
+  color: #161743;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+#popupCloseButton:hover {
+  background-color: #a0c94d;
+  transform: scale(1.05);
+}
+#popupOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Börja spela button styles */
+#startGameButton {
+  background-color: #b7e659;
+  color: #161743;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 15px;
+}
+#startGameButton:hover {
+  background-color: #a0c94d;
+  transform: scale(1.05);
+}
+button[onclick="#startGameButton()"].active {
+  background-color: white;
+  color: #8897D2;
+  border: 2px solid #8897D2;
+}
+
+/* Lägg till stil för länkar */
+.Links a {
+  color: white;
+  text-decoration: none;
+  margin-right: 0px;
+  padding-right: 12px;
+  padding-left: 18px;
+  padding-bottom: 20px;
+}
+
