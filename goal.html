@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxact Goal</title>
+    <link rel="stylesheet" href="goal.css">
+</head>
+<body>
+    <div id="outerContainer">
+        <div class="wrapper">
+            <img src="Vit logga.png" alt="Maxact logga" width="135" height="140">
+            <div class="Links">
+                <a href="maxact.html" target="_self">Habit logg</a>
+                <a href="maxact.data.html" target="_self">Data</a>
+                <a href="maxact.cal.html" target="_self">Calories</a>
+                <a href="goal.html" target="_self">Goal</a>
+            </div>
+            <br><br>
+            <div id="savedResults" class="result-container">
+                <h2>Antal kalorier per dag</h2>
+                <div id="savedResultsContent"></div>
+            </div>
+            <div class="form-container">
+                <form id="goalForm">
+                    <div class="weight-inputs">
+                        <div class="input-group">
+                            <label for="currentWeight">Nuvarande vikt (kg):</label>
+                            <input type="number" id="currentWeight" name="currentWeight" placeholder="Nuvarande vikt i kilo?" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="desiredWeight">Önskad vikt (kg):</label>
+                            <input type="number" id="desiredWeight" name="desiredWeight" placeholder="Önskad vikt i kilo?" required>
+                        </div>
+                    </div>
+                    
+                    <label for="goal">Vad är ditt mål?</label>
+                    <select id="goal" name="goal" required>
+                        <option value="GåUpp">Jag vill gå upp i vikt</option>
+                        <option value="GåNer">Jag vill gå ner i vikt</option>
+                        <option value="Behålla">Jag vill behålla samma vikt</option>
+                    </select>
+                    
+                    <label for="timeFrame">Tidsram (veckor):</label>
+                    <input type="number" id="timeFrame" name="timeFrame" placeholder="Antal veckor" required>
+                    
+                    <button type="submit">Skicka in mål</button>
+                </form>
+                <div id="calorieResult" class="result-container"></div>
+                <div id="Personprofile" class="Personprofile">
+                  <h4>Ändra din personliga profil</h4>
+                </div>
+                <button id="editGoalButton" style="display: none;">Ändra mål</button>
+                <button id="deleteGoalButton" style="display: none;">Ta bort mål</button>
+            </div>
+        </div>
+    </div>
+    <script src="goal.js"></script>
+</body>
+</html>

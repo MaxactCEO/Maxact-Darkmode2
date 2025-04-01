@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>     
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="maxact.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    /* Lägg till en övergripande container med padding */
+    #outerContainer {
+      padding-left: 10px; /* Lägg till marginal runt alla objekt */
+      padding-right: 10px; /* Lägg till marginal runt alla objekt */;
+      box-sizing: border-box; /* Inkludera padding i elementets totala bredd och höjd */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="outerContainer">
+    <div class="wrapper">
+      <img src="Vit logga.png" alt="Maxact logga" width="135" height="140">
+
+      <div class="Default">Default</div>
+      
+      <!-- Korrelationsruta -->
+      <div class="square">
+        <div class="sprint">Category</div>
+        No correlation has been found
+      </div>
+
+      <div class="Links">
+        <a href="maxact.html" target="_self">Habit logg</a>
+        <a href="maxact.data.html" target="_self">Data</a>
+        <a href="maxact.cal.html" target="_self">Calories</a>
+        <a href="goal.html" target="_self">Goal</a>
+      </div>
+
+      <div class="PresGraf">Prestationsgraf</div>
+
+      <!-- Här placeras grafen -->
+      <canvas id="graphCanvas" width="370" height="200"></canvas>
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+      <!-- Ny container för mest frekventa vanor -->
+      <button onclick="myFunction()"><i class="fa-solid fa-angle-up"></i></button>
+      <div id="VisaVanor" style="display: none;"></div> <!-- Lägg till display: none för att dölja initialt -->
+
+      <button name="VisaVanor"></button>
+      <div id="habitStatsContainer" style="width: 100%; margin-bottom: 20px;"></div>
+
+      <div id="frequentHabitsContainer" class="repost-container"></div> 
+
+      <button onclick="Form()">Lägg till ny vana</button>
+      <!-- Visa / dölja knappen till sektion 5 börjar här -->
+      <div id="ShowForm" style="display: none;"> <!-- Lägg till display: none för att dölja initialt -->
+
+        <form id="Enkät">
+          <!-- Kategori -->
+          <label for="Kategori">Category</label>
+          <select id="Kategori" name="Kategori" required>
+            <option value="">Välj kategori</option>
+            <option value="Kost">Kost</option>
+            <option value="Kosttillskott">Kosttillskott</option>
+            <option value="Dryck">Dryck</option>
+            <option value="Träning">Träning</option>
+            <option value="Fysisk aktivitet">Fysisk aktivitet</option>
+            <option value="Fotbollsträning">Fotbollsträning</option>
+            <option value="Sömn">Sömn</option>
+            <option value="Matchtid">Matchtid</option>
+            <option value="Övrigt">Övrigt</option>
+          </select>
+
+          <!-- Dynamiska fält -->
+          <div id="dynamic-fields"></div>
+
+          <!-- Datumfält -->
+          <label for="Datum">Date</label>
+          <input type="date" id="Datum" name="Datum" required>
+
+          <!-- Tidsfält -->
+          <label for="Tid">Time</label>
+          <input type="time" id="Tid" name="Tid" required>
+
+          <!-- Beskrivning -->
+          <label for="Beskrivning">Description</label>
+          <textarea id="Beskrivning" name="Beskrivning" rows="4" placeholder="Describe your habit"></textarea>
+
+          <!-- Skicka-knapp -->
+          <input type="submit" value="Send">
+        </form> 
+
+        <script>
+          function Form() {
+            var x = document.getElementById("ShowForm");
+            if (x.style.display === "none") {
+              x.style.display = "block";
+            } else {
+              x.style.display = "none";
+            }
+          }
+        </script>
+      </div>
+
+      <ul id="myMenu">
+
+        
+        <li><a href="#" onclick="filterCategory('all')">All</a></li>  <!-- Lägg till denna rad -->
+        <li><a href="#" onclick="filterCategory('Kost')">Kost</a></li>
+        <li><a href="#" onclick="filterCategory('Dryck')">Dryck</a></li>
+        <li><a href="#" onclick="filterCategory('Kosttillskott')">Kosttillskott</a></li>
+        <li><a href="#" onclick="filterCategory('Träning')">Träning</a></li>
+        <li><a href="#" onclick="filterCategory('Fysisk aktivitet')">Fysisk aktivitet</a></li>
+        <li><a href="#" onclick="filterCategory('Fotbollsträning')">Fotbollsträning</a></li>
+        <li><a href="#" onclick="filterCategory('Sömn')">Sömn</a></li>
+        <li><a href="#" onclick="filterCategory('Övrigt')">Övrigt</a></li>
+        <!-- ... resten av dina menyalternativ ... -->
+      </ul>
+
+      <!-- Lägg till en container för sökrutan -->
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Sök vanor..." onkeyup="filterReposts()">
+      </div>
+
+      <!-- Repost Container -->
+      <div id="repostContainer" class="repost-container">
+        <!-- Exempel på repost-rutor -->
+        <div class="repost" data-category="Kost">Diet: 500 ml <div class="repost-buttons"><button class="add-habit">Lägg till</button> <button class="remove-habit">Ta bort</button></div></div>
+        <div class="repost" data-category="Träning">Träning: 30 minuter <div class="repost-buttons"><button class="add-habit">Lägg till</button> <button class="remove-habit">Ta bort</button></div></div>
+        <div class="repost" data-category="Sömn">Sömn: 8 timmar <div class="repost-buttons"><button class="add-habit">Lägg till</button> <button class="remove-habit">Ta bort</button></div></div>
+        <!-- Lägg till fler repost-rutor här -->
+      </div>  
+    </div>
+  </div>
+
+  <script>
+    function myFunction() {
+      var visaVanor = document.getElementById("VisaVanor");
+      var showForm = document.getElementById("ShowForm");
+      var myMenu = document.getElementById("myMenu");
+      var addHabitButton = document.querySelector("button[onclick='Form()']");
+      var repostContainer = document.getElementById("repostContainer");
+      var searchContainer = document.querySelector(".search-container");
+
+      if (visaVanor.classList.contains("hidden")) {
+        visaVanor.classList.remove("hidden");
+        visaVanor.classList.add("visible");
+        showForm.classList.remove("hidden");
+        showForm.classList.add("visible");
+        myMenu.classList.remove("hidden");
+        myMenu.classList.add("visible");
+        addHabitButton.classList.remove("hidden");
+        addHabitButton.classList.add("visible");
+        repostContainer.classList.remove("hidden");
+        repostContainer.classList.add("visible");
+        searchContainer.classList.remove("hidden");
+        searchContainer.classList.add("visible");
+      } else {
+        visaVanor.classList.remove("visible");
+        visaVanor.classList.add("hidden");
+        showForm.classList.remove("visible");
+        showForm.classList.add("hidden");
+        myMenu.classList.remove("visible");
+        myMenu.classList.add("hidden");
+        addHabitButton.classList.remove("visible");
+        addHabitButton.classList.add("hidden");
+        repostContainer.classList.remove("visible");
+        repostContainer.classList.add("hidden");
+        searchContainer.classList.remove("visible");
+        searchContainer.classList.add("hidden");
+      }
+    }
+
+    function filterReposts() {
+      var input = document.getElementById('searchInput');
+      var filter = input.value.toLowerCase();
+      var repostContainer = document.getElementById('repostContainer');
+      var reposts = repostContainer.getElementsByClassName('repost');
+
+      for (var i = 0; i < reposts.length; i++) {
+        var repost = reposts[i];
+        if (repost.textContent.toLowerCase().indexOf(filter) > -1) {
+          repost.style.display = 'flex';
+        } else {
+          repost.style.display = 'none';
+        }
+      }
+    }
+
+    function filterCategory(category) {
+      var repostContainer = document.getElementById('repostContainer');
+      var reposts = repostContainer.getElementsByClassName('repost');
+
+      for (var i = 0; i < reposts.length; i++) {
+        var repost = reposts[i];
+        if (category === 'all' || repost.getAttribute('data-category') === category) {
+          repost.style.display = 'flex';
+        } else {
+          repost.style.display = 'none';
+        }
+      }
+    }
+  </script>
+
+  <script>
+    // Example of how to draw on the canvas
+    const canvas = document.getElementById('graphCanvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = 'Graf1.png';
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    img.onerror = function() {
+      console.error('Failed to load image: Graf1.png');
+    };
+  </script>
+
+  <script type="text/javascript">
+  </script>
+  <script src="maxact.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+html, body {
+  height: 200px;
+  margin-top: -130px; /* Ta bort standardmarginaler */
+  padding: 0px; /* Ta bort standardpadding */
+}
+
+/* Grundläggande stil för body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #171946;
+  margin: 0;
+  display: flex;
+  height: 1000px;
+  align-items: center; /* Centrera innehållet */
+  justify-content: center; /* Ytterligare centrering */
+  overflow-x: hidden; /* Förhindra horisontell scrollning */
+}
+
+/* Lägg till logga */
+.wrapper img {
+  width: 135px;
+  height: 140px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+/* Lägg till stil för länkar */
+.Links a {
+  color: white;
+  text-decoration: none;
+  margin-right: 0px;
+  padding-right: 12px;
+  padding-left: 18px;
+}
+
+.Links a:hover {
+  text-decoration: underline;
+}
+
+/* Lägg till stil för knappar */
+button {
+  background-color: #030310; 
+  box-shadow: 0 2px 4px rgba(0,0,0,1);
+  opacity: 0.7;
+  color: rgb(255, 255, 255); /* Vit text */
+  border: none; /* Ta bort kantlinjen */
+  padding: 10px 10px; /* Utrymme runt texten */
+  border-radius: 10px 10px 10px 10px; /* Rundade hörn */
+  width: 300px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  display: flex; /* Använd flexbox för att centrera innehållet */
+  justify-content: center; /* Centrera horisontellt */
+  align-items: center; /* Centrera vertikalt */
+  text-align: center; /* Centrera texten inom flexboxen */
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+}
+
+button :hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+button .active {
+  background-color: white;
+  color: #8897D2;
+  border: 2px solid #8897D2;
+}
+
+.Goal{
+  display: center;
+  color: white;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: normal;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#goalForm label {
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#goalForm input, #goalForm select {
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+  background-color: #000000; /* Mörk bakgrundsfärg för fälten */
+  border-radius: 5px;
+  border-color: white;
+  color: white;
+  border-width: 1px;
+  margin-left: 15px;
+}
+
+#input {
+  width: 310px;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+  background-color: #000000; /* Mörk bakgrundsfärg för sökrutan */
+  border-radius: 5px;
+  border-color: white;
+  color: white;
+  border-width: 1px;
+}
+
+.Vikt{
+  display: center;
+  color: white;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: normal;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-bottom:-10px;
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.1); /* Liknande bakgrund som i maxact.html */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 310px;
+  margin-top: 50px;
+}
+
+.result-container {
+  color: white;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: normal;
+  text-align: left;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.saved-result {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-box {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-box.full-width {
+  width: 310px;
+}
+
+.result-box-container {
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+}
+
+.result-box.half-width {
+  width: 48%;
+}
+
+.result-box h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.result-box p {
+  font-size: 18px;
+  margin: 5px 0 0 0;
+}
+
+.Personprofile{
+  display: center;
+  color: white;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: normal;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-top: -30px;
+}
+
+.savedResults{
+  color: white;
+  font-size: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;       
+  font-weight: normal;
+  padding-right: 0px; 
+  padding-left: 10px;
+  text-align: center;
+}
